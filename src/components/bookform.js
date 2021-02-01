@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { addBook } from '../actions/BookActions';
 import categories from '../utils/cat';
 import { changeCategory } from '../actions/categoryActions';
@@ -140,6 +141,17 @@ const mapDispatchToProps = dispatch => ({
   addBook: book => dispatch(addBook(book)),
   changeCategory: category => dispatch(changeCategory(category)),
 });
+
+bookForm.propTypes = {
+  changeCategory: PropTypes.func,
+  addBook: PropTypes.func,
+};
+
+bookForm.defaultProps = {
+  changeCategory: PropTypes.func,
+  removeBook: PropTypes.func,
+
+};
 
 export default connect(null,
   mapDispatchToProps)(bookForm);

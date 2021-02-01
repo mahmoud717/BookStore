@@ -1,7 +1,8 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-key */
-
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Book from './book';
 import CategorySelect from './categorySelect';
@@ -45,6 +46,16 @@ const mapStateToProps = state => {
     books = tempData;
   }
   return ({ books });
+};
+
+booklist.propTypes = {
+  books: PropTypes.object,
+
+};
+
+booklist.defaultProps = {
+  books: PropTypes.object,
+
 };
 export default connect(
   mapStateToProps, null,

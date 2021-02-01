@@ -1,9 +1,10 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 /* eslint-disable react/style-prop-object */
 import { connect } from 'react-redux';
 import React, { useState } from 'react';
 import { unmountComponentAtNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import { editBook } from '../actions/BookActions';
 
 const EditBook = props => {
@@ -149,6 +150,19 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   editBook: (bookID, book) => dispatch(editBook(bookID, book)),
 });
+
+EditBook.propTypes = {
+  oldBook: PropTypes.object,
+  editBook: PropTypes.func,
+  bookID: PropTypes.string,
+
+};
+
+EditBook.defaultProps = {
+  oldBook: PropTypes.object,
+  editBook: PropTypes.func,
+  bookID: PropTypes.string,
+};
 
 export default connect(mapStateToProps,
   mapDispatchToProps)(EditBook);

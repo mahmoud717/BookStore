@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { changeCategory } from '../actions/categoryActions';
 import categories from '../utils/cat';
 
@@ -31,6 +32,18 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeCategory: category => dispatch(changeCategory(category)),
 });
+
+categorySelect.propTypes = {
+  category: PropTypes.string,
+  changeCategory: PropTypes.func,
+
+};
+
+categorySelect.defaultProps = {
+  oldBook: PropTypes.object,
+  editBook: PropTypes.func,
+
+};
 
 export default connect(mapStateToProps,
   mapDispatchToProps)(categorySelect);

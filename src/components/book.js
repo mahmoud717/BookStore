@@ -1,6 +1,8 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import PropTypes from 'prop-types';
 import { connect, Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 
@@ -105,6 +107,17 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   removeBook: bookID => dispatch(removeBook(bookID)),
 });
+
+book.propTypes = {
+  book: PropTypes.object,
+  removeBook: PropTypes.func,
+};
+
+book.defaultProps = {
+  book: PropTypes.object,
+  removeBook: PropTypes.func,
+
+};
 
 export default connect(mapStateToProps,
   mapDispatchToProps)(book);
