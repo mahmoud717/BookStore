@@ -1,4 +1,4 @@
-import CHANGE_CATEGORY from './index';
+import { CHANGE_CATEGORY } from './index';
 
 const changeCategory = category => ({
   type: CHANGE_CATEGORY,

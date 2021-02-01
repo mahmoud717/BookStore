@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeCategory } from '../actions/categoryActions';
+import changeCategory from '../actions/categoryActions';
 import categories from '../utils/cat';
 
 const categorySelect = props => {

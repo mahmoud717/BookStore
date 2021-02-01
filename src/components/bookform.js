@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { useState } from 'react';
 import { addBook } from '../actions/BookActions';
 import categories from '../utils/cat';
-import { changeCategory } from '../actions/categoryActions';
+import changeCategory from '../actions/categoryActions';
 
 const bookForm = props => {
   const [title, setTitle] = useState('');

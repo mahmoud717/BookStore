@@ -3,8 +3,8 @@
 /* eslint-disable react/jsx-key */
 
 import { connect } from 'react-redux';
-import Book from './book';
-import CategorySelect from './categorySelect';
+import Book from '../components/book';
+import CategorySelect from '../components/categorySelect';
 
 const booklist = props => {
   let books = [];
