@@ -1,6 +1,6 @@
 import {
   ADD_BOOK, REMOVE_BOOK, EDIT_BOOK, UPDATE_PROGRESS,
-} from '../actions/BookActions';
+} from '../actions/index';
 
 const initialState = {
   [Math.floor(Math.random() * 100000)]: {

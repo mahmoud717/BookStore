@@ -1,7 +1,6 @@
-const ADD_BOOK = 'ADD_BOOK';
-const REMOVE_BOOK = 'REMOVE_BOOK';
-const EDIT_BOOK = 'EDIT_BOOK';
-const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
+import {
+  ADD_BOOK, REMOVE_BOOK, EDIT_BOOK, UPDATE_PROGRESS,
+} from './index';
 
 export const addBook = book => ({
   type: ADD_BOOK,
@@ -22,7 +21,3 @@ export const updateProgress = (bookID, newBook) => ({
   type: UPDATE_PROGRESS,
   payload: { bookID, newBook },
 });
-
-export {
-  ADD_BOOK, REMOVE_BOOK, EDIT_BOOK, UPDATE_PROGRESS,
-};

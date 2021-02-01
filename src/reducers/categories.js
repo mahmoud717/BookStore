@@ -1,4 +1,4 @@
-import { CHANGE_CATEGORY } from '../actions/categoryActions';
+import { CHANGE_CATEGORY } from '../actions/index';
 
 const initialState = {
   category: 'All',

@@ -1,5 +1,8 @@
-export const CHANGE_CATEGORY = 'CHANGE_CATEGORY';
-export const changeCategory = category => ({
+import CHANGE_CATEGORY from './index';
+
+const changeCategory = category => ({
   type: CHANGE_CATEGORY,
   payload: category,
 });
+
+export default changeCategory;
