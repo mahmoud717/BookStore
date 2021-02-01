@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import BookList from '../containers/booklist';
-import BookForm from './bookform';
+import BookForm from '../containers/bookform';
 import Navbar from './navbar';
 
 function App() {
