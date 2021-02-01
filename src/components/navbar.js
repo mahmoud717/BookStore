@@ -12,9 +12,9 @@ const Navbar = () => (
       </div>
     </div>
     <div className="navbar-right align-items-center justify-content-center">
-      <a href="_">
+      <div>
         login
-      </a>
+      </div>
     </div>
   </nav>
 );

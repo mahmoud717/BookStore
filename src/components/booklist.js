@@ -4,6 +4,7 @@
 
 import { connect } from 'react-redux';
 import Book from './book';
+import CategorySelect from './categorySelect';
 
 const booklist = props => {
   let books = [];
@@ -17,13 +18,22 @@ const booklist = props => {
   const noBooks = <div className="text-center no-books py-5">Add books to display them here.</div>;
   return (
     <div className="book-list d-flex flex-column">
+      <div className="d-flex justify-content-between">
+        <div className="book-list-header">
+          ALL BOOKS
+        </div>
+        <CategorySelect />
+
+      </div>
+
       {books.length === 0 ? noBooks : books}
+
     </div>
   );
 };
 const mapStateToProps = state => {
   let books = {};
-  if (state.Category === 'All') {
+  if (state.Category.category === 'All') {
     books = state.Books;
   } else {
     const tempData = {};

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { useState } from 'react';
 import { addBook } from '../actions/BookActions';
 import categories from '../utils/cat';
+import { changeCategory } from '../actions/categoryActions';
 
 const bookForm = props => {
   const [title, setTitle] = useState('');
@@ -23,6 +24,9 @@ const bookForm = props => {
       chapterName,
     };
     props.addBook(book);
+    props.changeCategory('All');
+    document.getElementById('categories').value = 'All';
+    document.querySelector('.book-list-header').innerText = 'ALL BOOKS';
   };
 
   const displayCategories = [];
@@ -134,6 +138,7 @@ const bookForm = props => {
 
 const mapDispatchToProps = dispatch => ({
   addBook: book => dispatch(addBook(book)),
+  changeCategory: category => dispatch(changeCategory(category)),
 });
 
 export default connect(null,
