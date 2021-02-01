@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-key */
 
@@ -5,23 +6,36 @@ import { connect } from 'react-redux';
 import Book from './book';
 
 const booklist = props => {
-//   const books = props.books.map(book => <Book book={book} />);
   let books = [];
-  for (const [, value] of Object.entries(props.books)) {
-    books.push(value);
+  for (const [key, value] of Object.entries(props.books)) {
+    books.push([[key], value]);
   }
   books = books.map(newBook => (
-    <Book book={newBook} />
+    <Book book={newBook[1]} id={newBook[0]} />
   ));
+
+  const noBooks = <div className="text-center no-books py-5">Add books to display them here.</div>;
   return (
-    <div className="booklist d-flex flex-column m-4">
-      {books}
+    <div className="book-list d-flex flex-column">
+      {books.length === 0 ? noBooks : books}
     </div>
   );
 };
-const mapStateToProps = state => ({
-  books: state.Books,
-});
+const mapStateToProps = state => {
+  let books = {};
+  if (state.Category === 'All') {
+    books = state.Books;
+  } else {
+    const tempData = {};
+    for (const index in state.Books) {
+      if (state.Books[index].category === state.Category.category) {
+        tempData[index] = state.Books[index];
+      }
+    }
+    books = tempData;
+  }
+  return ({ books });
+};
 export default connect(
   mapStateToProps, null,
 )(booklist);

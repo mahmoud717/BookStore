@@ -1,16 +1,19 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/style-prop-object */
 import { connect } from 'react-redux';
 import React, { useState } from 'react';
-import { addBook } from '../actions/BookActions';
-import categories from '../utils/cat';
+import { unmountComponentAtNode } from 'react-dom';
+import { editBook } from '../actions/BookActions';
 
-const bookForm = props => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [pages, setPages] = useState('');
-  const [category, setCategory] = useState('');
-  const [pagesread, setPagesread] = useState('');
-  const [chapter, setChapter] = useState('');
-  const [chapterName, setChapterName] = useState('');
+const EditBook = props => {
+  const [title, setTitle] = useState(props.oldBook.title);
+  const [author, setAuthor] = useState(props.oldBook.author);
+  const [pages, setPages] = useState(props.oldBook.pages);
+  const [category, setCategory] = useState(props.oldBook.category);
+  const [pagesread, setPagesread] = useState(props.oldBook.pagesread);
+  const [chapter, setChapter] = useState(props.oldBook.chapter);
+  const [chapterName, setChapterName] = useState(props.oldBook.chapterName);
   const submitHandler = e => {
     e.preventDefault();
     const book = {
@@ -22,22 +25,28 @@ const bookForm = props => {
       chapter,
       chapterName,
     };
-    props.addBook(book);
+    props.editBook(props.bookID, book);
+
+    unmountComponentAtNode(document.querySelector('.modall'));
+    document.querySelector('.modall').classList.remove('show-modal');
   };
 
+  const categories = ['Action', 'Drama', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Science Fiction'];
   const displayCategories = [];
-  categories.map(cat => (
-    displayCategories.push(<option value={cat}>{cat}</option>)
-  ));
-
+  categories.map(cat => {
+    if (cat === props.oldBook.category) {
+      return displayCategories.push(<option selected value={cat}>{cat}</option>);
+    }
+    return displayCategories.push(<option value={cat}>{cat}</option>);
+  });
   return (
-    <form onSubmit={submitHandler} className=" book-form">
-      <div className="form-header">
-        ADD NEW BOOK
+    <form onSubmit={submitHandler} className="book-edit-form mt-5">
+      <div className="form-header form-edit-header m-x-auto h1 text-center my-5">
+        EDIT BOOK
       </div>
-      <div className="form-body d-flex row m-0  w-100">
+      <div className="form-body d-flex row m-auto  w-50">
         <div className="col-12 row p-0 justify-content-between">
-          <div className="col-3 input">
+          <div className="col-12 input">
             <input
               className="book-name  w-100"
               type="text"
@@ -48,7 +57,7 @@ const bookForm = props => {
               required
             />
           </div>
-          <div className="col-3 input">
+          <div className="col-12 input">
             <input
               className="book-author  w-100"
               type="text"
@@ -60,14 +69,14 @@ const bookForm = props => {
             />
 
           </div>
-          <div className="col-3 input">
+          <div className="col-12 input">
             <select name="category" id="category" required onChange={e => setCategory(e.target.options[e.target.selectedIndex].value)} className=" w-100 form-select">
-              <option value="" disabled selected>Category</option>
+              <option value="" disabled>Category</option>
               {displayCategories}
             </select>
 
           </div>
-          <div className="col-3 input">
+          <div className="col-12 input">
             <input
               className="book-pages  w-100"
               type="number"
@@ -85,7 +94,7 @@ const bookForm = props => {
         </div>
         <div className="col-12 p-0 row justify-content-between">
 
-          <div className="col-3 input">
+          <div className="col-12 input">
             <input
               className="book-pages-read  w-100"
               type="number"
@@ -99,7 +108,7 @@ const bookForm = props => {
             />
 
           </div>
-          <div className="col-3 input">
+          <div className="col-12 input">
             <input
               className="book-current-chapter  w-100"
               type="number"
@@ -112,7 +121,7 @@ const bookForm = props => {
               required
             />
           </div>
-          <div className="col-3 input">
+          <div className="col-12 input">
             <input
               className="book-current-chapter-name  w-100"
               type="text"
@@ -122,8 +131,8 @@ const bookForm = props => {
               onChange={e => setChapterName(e.target.value)}
             />
           </div>
-          <div className="button col-3 input justify-content-center align-items-center">
-            <button type="submit" className=" btn btn-primary w-100 btn-lg ">Add Book</button>
+          <div className="button col-12 input justify-content-center align-items-center">
+            <button type="submit" className=" btn btn-primary w-100 btn-lg ">Edit Book</button>
           </div>
         </div>
 
@@ -132,9 +141,14 @@ const bookForm = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addBook: book => dispatch(addBook(book)),
+const mapStateToProps = (state, ownProps) => ({
+  oldBook: ownProps.book,
+  bookID: ownProps.bookID,
 });
 
-export default connect(null,
-  mapDispatchToProps)(bookForm);
+const mapDispatchToProps = dispatch => ({
+  editBook: (bookID, book) => dispatch(editBook(bookID, book)),
+});
+
+export default connect(mapStateToProps,
+  mapDispatchToProps)(EditBook);
