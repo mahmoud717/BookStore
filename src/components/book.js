@@ -12,7 +12,7 @@ import store from '../index';
 const book = props => {
   const completed = ((props.book.pagesread) / (props.book.pages)) * 100;
   const calculateProgress = {
-    width: completed * 3,
+    width: (completed * 3),
   };
 
   const handleProgress = () => {

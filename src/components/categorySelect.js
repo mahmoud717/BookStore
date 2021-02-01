@@ -7,7 +7,7 @@ const categorySelect = props => {
   categories.map(cat => (
     displayCategories.push(<option value={cat}>{cat}</option>)
   ));
-  console.log(displayCategories);
+
   return (
     <select
       name="categories"
