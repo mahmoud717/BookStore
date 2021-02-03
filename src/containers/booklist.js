@@ -4,7 +4,7 @@
 
 import { connect } from 'react-redux';
 import Book from '../components/book';
-import CategorySelect from '../components/categorySelect';
+import CategorySelect from './categorySelect';
 
 const booklist = props => {
   let books = [];
