@@ -14,7 +14,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://vibrant-hugle-e28ff6.netlify.app)
+[Live Demo Link](https://book-store-cms.netlify.app/)
 
 ## Getting Started
 
