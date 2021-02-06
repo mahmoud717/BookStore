@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# BOOKSTORE CMS
 
 > This is a bookstore project built with react and redux.
 
